@@ -35,7 +35,18 @@ var stores = [
     },
     purchasedPerHour: function() { //avg cookies purchasedPerSale * customersPerHour
       return this.averagePurchasedPerSale * this.customersPerHour;
-    }//avg cookies purchasedPerHour * customersPerHour
+    },//avg cookies purchasedPerHour * customersPerHour
+    simulatedCookiesPerHour: function() {
+     var hours = [];
+     for (var i = 0; i < this.hoursOpen; i++) {
+       var customerCount = this.customersPerHour();
+       var time = (i + 6);
+       hours[i] = customerCount * this.averagePurchasedPerSale;
+       this.cookiesPerHour = hours;
+       console.log(time);
+       console.log(this.cookiesPerHour);
+     }
+    }
   },
 
   SeattleCenter = {
