@@ -3,28 +3,38 @@
 //prototype values
 AddStore.prototype.hoursOpen = 15;
 
-AddStore.prototype.getRandomCustomers = function() { //generate random customers
+AddStore.prototype.getRandomCustomers = function() {
   var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers)).toFixed();
   return randomvalue;
 };
 
-AddStore.prototype.getPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
-  console.log('Average Purchased: ' + this.averagePurchasedPerSale);
-  console.log('Customers Per Hour: ' + this.getRandomCustomers());
-  console.log(this.averagePurchasedPerSale);
-  return (this.averagePurchasedPerSale * this.getRandomCustomers());
-};
-
-AddStore.prototype.getSimulatedCookiesPerHour = function() {
-  var hours = [];
+AddStore.prototype.getPurchasedPerHour = function() {
+  var purchasedPerHour = [];
   for (var i = 0; i < this.hoursOpen; i++) {
-    var customerCount = this.getRandomCustomers();
-    var time = (i + 6);
-    hours[i] = customerCount * this.averagePurchasedPerSale;
-    this.cookiesPerHour = hours;
+    var customersPerHour = this.getRandomCustomers();
+    purchasedPerHour[i] = (this.averagePurchasedPerSale * customersPerHour);
+    this.purchasedPerHour = purchasedPerHour[i];
   }
 };
 
+AddStore.prototype.getSimulatedCookiesPerHour = function() {
+  var cookiesPerHour = [];
+  this.cookiesPerHour = [];
+  console.log('Average: ' + this.averagePurchasedPerSale);
+  for (var i = 0; i < this.hoursOpen; i++) {
+    var customersPerHour = this.getRandomCustomers();
+    var militaryTime = (i + 6);
+    cookiesPerHour[i] = customersPerHour * this.averagePurchasedPerSale;
+//can this be an array?
+    this.cookiesPerHour[i] = cookiesPerHour;
+  }
+};
+
+/*break out another function to keep hourly generated
+customers the same between purchasedPerHour() and getSimulatedCookiesPerHour()
+*/
+
+//put the constructor and stores array in my separate stores.js file? please advise
 function AddStore(name,
   minHourlyCustomers,
   maxHourlyCustomers,
