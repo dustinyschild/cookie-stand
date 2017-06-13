@@ -1,7 +1,9 @@
 //stores all information
 var stores = [
-
+//break these out into functions!!
   FirstAndPike = {
+    //add location
+    //add contact information
     hoursOpen: 14,
     minHourlyCustomers: 23,
     maxHourlyCustomers: 65,
@@ -121,3 +123,5 @@ var stores = [
     },
   },
 ];
+
+//make some functions using the DOM to add info to the document.
