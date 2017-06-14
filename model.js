@@ -49,16 +49,15 @@ var stores = [
 ];
 
 console.log(stores);
-
+//gets the element with id of 'store-locations'
 var storeLocationsContainer = document.getElementById('store-locations');
 
-for (var i = 0; i < stores.length; i++) {
-  addRow();
-}
-
-function addRow() {
+//create new table row element and store it as var newRow
   var newRow = document.createElement('tr');
-
-  newNameCell = document.createElement('td');
+//create new table cell and store it as var newNameCell
+  var newNameCell = document.createElement('td');
+//populate newNameCell with text
   newNameCell.textContent = store.name;
-}
+//add the the cell to the row
+newNameCell.
+//}
