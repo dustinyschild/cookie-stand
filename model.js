@@ -3,30 +3,22 @@
 //prototype values
 AddStore.prototype.hoursOpen = 15;
 
-AddStore.prototype.getRandomCustomers = function() {
+AddStore.prototype.getRandomCustomers = function() { //generate random customers
   var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers)).toFixed();
   return randomvalue;
 };
 
-AddStore.prototype.getPurchasedPerHour = function() {
-  var purchasedPerHour = [];
-  for (var i = 0; i < this.hoursOpen; i++) {
-    var customersPerHour = this.getRandomCustomers();
-    purchasedPerHour[i] = (this.averagePurchasedPerSale * customersPerHour);
-    this.purchasedPerHour = purchasedPerHour[i];
-  }
+AddStore.prototype.getPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
+  return (this.averagePurchasedPerSale * this.getRandomCustomers());
 };
 
 AddStore.prototype.getSimulatedCookiesPerHour = function() {
-  var cookiesPerHour = [];
-  this.cookiesPerHour = [];
-  console.log('Average: ' + this.averagePurchasedPerSale);
+  var hours = [];
   for (var i = 0; i < this.hoursOpen; i++) {
-    var customersPerHour = this.getRandomCustomers();
-    var militaryTime = (i + 6);
-    cookiesPerHour[i] = customersPerHour * this.averagePurchasedPerSale;
-//can this be an array?
-    this.cookiesPerHour[i] = cookiesPerHour;
+    var customerCount = this.getRandomCustomers();
+    var time = (i + 6);
+    hours[i] = customerCount * this.averagePurchasedPerSale;
+    this.cookiesPerHour = hours;
   }
 };
 
@@ -56,4 +48,17 @@ var stores = [
   new AddStore('Alki',2,16,4.6)
 ];
 
-//make some functions using the DOM to add info to the document.
+console.log(stores);
+
+var storeLocationsContainer = document.getElementById('store-locations');
+
+for (var i = 0; i < stores.length; i++) {
+  addRow();
+}
+
+function addRow() {
+  var newRow = document.createElement('tr');
+
+  newNameCell = document.createElement('td');
+  newNameCell.textContent = store.name;
+}
