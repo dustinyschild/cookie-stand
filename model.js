@@ -13,12 +13,12 @@ AddStore.prototype.getPurchasedPerHour = function() { //avg cookies purchasedPer
 };
 
 AddStore.prototype.getSimulatedCookiesPerHour = function() {
-  var hours = [];
+  var hour = [];
   for (var i = 0; i < this.hoursOpen; i++) {
     var customerCount = this.getRandomCustomers();
     var time = (i + 6);
-    hours[i] = customerCount * this.averagePurchasedPerSale;
-    this.cookiesPerHour = hours;
+    hour[i] = customerCount * this.averagePurchasedPerSale;
+    this.cookiesPerHour = hour;
   }
 };
 
@@ -51,7 +51,9 @@ var stores = [
 console.log(stores);
 //gets the element with id of 'store-locations'
 var storeLocationsContainer = document.getElementById('store-locations');
+console.log(storeLocationsContainer);
 
+function createNewRow() {
 //create new table row element and store it as var newRow
   var newRow = document.createElement('tr');
 //create new table cell and store it as var newNameCell
@@ -59,5 +61,5 @@ var storeLocationsContainer = document.getElementById('store-locations');
 //populate newNameCell with text
   newNameCell.textContent = store.name;
 //add the the cell to the row
-newNameCell.
-//}
+  newRow.appendCild(newNameCell);
+}

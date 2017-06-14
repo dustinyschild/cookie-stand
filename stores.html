@@ -13,15 +13,29 @@
     <tbody id= "table-body">
     </tbody>
   </table>
-
-  <fieldset>
-    <legend>Add a store:</legend>
-    <form>
-      <input type= "text"/>
-      <input type="text" name="" value=""/>
-    </form>
-  </fieldset>
-
+  <form action="https://requestb.in/1ej5fes1" method="POST">
+    <fieldset>
+      <legend>Add a store:</legend>
+      <ul>
+        <li>
+          <label class= "new-store-label">Store Name:</label>
+          <input type= "text" name= "storeName" id= "storeName"/>
+        </li>
+        <li>
+          <label class= "new-store-label">Min. Customers/Hour:</label>
+          <input type="text" name="" value=""/>
+        </li>
+        <li>
+          <label class= "new-store-label">Max. Customers/Hour:</label>
+          <input type="text" name="" value=""/>
+        </li>
+        <li>
+          <label class= "new-store-label">Avg. Cookies Purchased/Hour:</label>
+          <input type="text" name="" value=""/>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
   <script src= "model.js"></script>
   <script src= "stores.js"></script>
 </body>
