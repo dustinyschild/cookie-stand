@@ -7,8 +7,8 @@ AddStore.prototype.getRandomCustomers = function() { //generate random customers
   var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers)).toFixed();
   return randomvalue;
 };
-
-AddStore.prototype.getPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
+//this should also be an array...add for loop
+AddStore.prototype.getSimulatedPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
   return (this.averagePurchasedPerSale * this.getRandomCustomers());
 };
 
@@ -36,7 +36,7 @@ function AddStore(name,
   this.minHourlyCustomers = minHourlyCustomers;
   this.maxHourlyCustomers = maxHourlyCustomers;
   this.averagePurchasedPerSale = averagePurchasedPerSale;
-  this.purchasedPerHour = this.getPurchasedPerHour();
+  this.purchasedPerHour = this.getSimulatedPurchasedPerHour();
   this.simulatedCookiesPerHour = this.getSimulatedCookiesPerHour();
 }
 
@@ -52,14 +52,36 @@ console.log(stores);
 //gets the element with id of 'store-locations'
 var storeLocationsContainer = document.getElementById('store-locations');
 console.log(storeLocationsContainer);
+for (var i = 0; i < stores.length; i++) {
+  store = stores[i];
+  createNewRow(storeLocationsContainer, store);
+}
 
-function createNewRow() {
-//create new table row element and store it as var newRow
+function createNewRow(container, store) {
   var newRow = document.createElement('tr');
-//create new table cell and store it as var newNameCell
+  console.log(newRow);
   var newNameCell = document.createElement('td');
-//populate newNameCell with text
+  console.log(newNameCell);
   newNameCell.textContent = store.name;
-//add the the cell to the row
-  newRow.appendCild(newNameCell);
+  newRow.appendChild(newNameCell);
+
+  //addCellsForHours(newRow); //check that this is right
+  storeLocationsContainer.appendChild(newRow);
+}
+
+function addCellsForHours(row) {
+  for (j = 0; j = stores[i].hoursOpen; j++) {
+    var hourCell = document.createElement('td');
+    time = (j + 6);
+    if (time < 12) {
+      console.log(time);
+      hourCell.textContent = time + 'am';
+    }
+    if (time >= 12) {
+      time = (time % 12);
+      console.log(time);
+      hourCell.textContent = time + 'pm';
+    }
+    row.appendChild(hourCell);
+  }
 }
