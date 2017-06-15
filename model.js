@@ -7,10 +7,6 @@ AddStore.prototype.getRandomCustomers = function() { //generate random customers
   var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers));
   return randomvalue;
 };
-//this should also be an array...add for loop
-//AddStore.prototype.getSimulatedPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
-  //return (this.averagePurchasedPerSale * this.getRandomCustomers());
-//};
 
 AddStore.prototype.getSimulatedCookiesPerHour = function() {
   var hour = [];
@@ -21,11 +17,6 @@ AddStore.prototype.getSimulatedCookiesPerHour = function() {
   }
 };
 
-/*break out another function to keep hourly generated
-customers the same between purchasedPerHour() and getSimulatedCookiesPerHour()
-*/
-
-//put the constructor and stores array in my separate stores.js file? please advise
 function AddStore(name,
   minHourlyCustomers,
   maxHourlyCustomers,
@@ -35,7 +26,6 @@ function AddStore(name,
   this.minHourlyCustomers = minHourlyCustomers;
   this.maxHourlyCustomers = maxHourlyCustomers;
   this.averagePurchasedPerSale = averagePurchasedPerSale;
-  //this.purchasedPerHour = this.getSimulatedPurchasedPerHour();
   this.simulatedCookiesPerHour = this.getSimulatedCookiesPerHour();
 }
 
@@ -46,8 +36,6 @@ var stores = [
   new AddStore('CapitolHill',20,38,2.3),
   new AddStore('Alki',2,16,4.6)
 ];
-
-console.log(stores);
 
 var tableHeader = document.getElementById('table-header');
 var headerRow = document.createElement('tr');
@@ -74,7 +62,6 @@ for (var i = 0; i < stores[0].hoursOpen; i++) {
 var totalsBox = document.createElement('td');
 totalsBox.textContent = 'Totals';
 headerRow.appendChild(totalsBox);
-console.log(tableHeader);
 
 var tableBody = document.getElementById('table-body');
 
@@ -96,29 +83,26 @@ for (var i = 0; i < stores.length; i++) {
   var totalCookies = 0;
   for (j = 0; j < stores[i].hoursOpen; j++) {
     totalCookies = (totalCookies) + (stores[i].cookiesPerHour[j]);
-    console.log(stores[i].cookiesPerHour[j]);
   }
   totalCookies = totalCookies.toFixed(2);
-  console.log(totalCookies);
   totalsData.textContent = totalCookies;
   storeRow.appendChild(totalsData);
 }
 
-console.log(tableBody);
+var submitButton = document.getElementById('submitButton');
+console.log(submitButton);
 
-/*window.addEventListener('click', submitClick());
+submitButton.addEventListener('click', submitClick);
 
 function submitClick() {
-  getNewstoreInfo();
-  new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
-  createNewRow(storeLocationsContainer, );
-}
-
-function getNewstoreInfo() {
+  console.log('clicked');
   var storeName = document.querySelector('input[name = "storeName"]');
   var minHourlyCustomers = document.querySelector('input[name = "storeName"]');
   var maxHourlyCustomers = document.querySelector('input[name = "storeName"]');
   var averagePurchasedPerSale = document.querySelector('input[name = "storeName"]');
 
+  stores = new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
+  console.log(stores);
 }
-*/
+
+console.log(stores);
