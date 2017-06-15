@@ -8,16 +8,15 @@ AddStore.prototype.getRandomCustomers = function() { //generate random customers
   return randomvalue;
 };
 //this should also be an array...add for loop
-AddStore.prototype.getSimulatedPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
-  return (this.averagePurchasedPerSale * this.getRandomCustomers());
-};
+//AddStore.prototype.getSimulatedPurchasedPerHour = function() { //avg cookies purchasedPerSale * customersPerHour
+  //return (this.averagePurchasedPerSale * this.getRandomCustomers());
+//};
 
 AddStore.prototype.getSimulatedCookiesPerHour = function() {
   var hour = [];
   for (var i = 0; i < this.hoursOpen; i++) {
     var customerCount = this.getRandomCustomers();
-    var time = (i + 6);
-    hour[i] = (customerCount * this.averagePurchasedPerSale).toFixed(2);
+    hour[i] = (customerCount * this.averagePurchasedPerSale);
     this.cookiesPerHour = hour;
   }
 };
@@ -36,7 +35,7 @@ function AddStore(name,
   this.minHourlyCustomers = minHourlyCustomers;
   this.maxHourlyCustomers = maxHourlyCustomers;
   this.averagePurchasedPerSale = averagePurchasedPerSale;
-  this.purchasedPerHour = this.getSimulatedPurchasedPerHour();
+  //this.purchasedPerHour = this.getSimulatedPurchasedPerHour();
   this.simulatedCookiesPerHour = this.getSimulatedCookiesPerHour();
 }
 
@@ -88,60 +87,26 @@ for (var i = 0; i < stores.length; i++) {
 
   for (var j = 0; j < stores[i].hoursOpen; j++) {
     storeData = document.createElement('td');
-    storeData.textContent = stores[i].cookiesPerHour[j];
+    var storeDataPoint = (stores[i].cookiesPerHour[j]).toFixed(2);
+    storeData.textContent = storeDataPoint;
     storeRow.appendChild(storeData);
   }
 
   var totalsData = document.createElement('td');
   var totalCookies = 0;
   for (j = 0; j < stores[i].hoursOpen; j++) {
-    totalCookies = totalCookies + stores[i].cookiesPerHour[j];
+    totalCookies = (totalCookies) + (stores[i].cookiesPerHour[j]);
     console.log(stores[i].cookiesPerHour[j]);
   }
+  totalCookies = totalCookies.toFixed(2);
   console.log(totalCookies);
   totalsData.textContent = totalCookies;
   storeRow.appendChild(totalsData);
 }
 
 console.log(tableBody);
-//gets the element with id of 'store-locations'
-/*var storeLocationsContainer = document.getElementById('store-locations');
-console.log(storeLocationsContainer);
-for (var i = 0; i < stores.length; i++) {
-  store = stores[i];
-  createNewRow(storeLocationsContainer, store);
-}
 
-function createNewRow(container, store) {
-  var newRow = document.createElement('tr');
-  console.log(newRow);
-  var newNameCell = document.createElement('td');
-  console.log(newNameCell);
-  newNameCell.textContent = store.name;
-  newRow.appendChild(newNameCell);
-
-  //addCellsForHours(newRow); //check that this is right
-  storeLocationsContainer.appendChild(newRow);
-}
-
-function addCellsForHours(row) {
-  for (j = 0; j = stores[i].hoursOpen; j++) {
-    var hourCell = document.createElement('td');
-    time = (j + 6);
-    if (time < 12) {
-      console.log(time);
-      hourCell.textContent = time + 'am';
-    }
-    if (time >= 12) {
-      time = (time % 12);
-      console.log(time);
-      hourCell.textContent = time + 'pm';
-    }
-    row.appendChild(hourCell);
-  }
-}
-
-window.addEventListener('click', submitClick());
+/*window.addEventListener('click', submitClick());
 
 function submitClick() {
   getNewstoreInfo();
