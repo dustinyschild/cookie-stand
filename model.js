@@ -110,10 +110,23 @@ function checkFieldValues(){
 
   if (typeof storeName !== 'string' || storeName === '') {
     //display error message
-    console.log(typeof storeName);
-    console.log('invalid input');
-  } else {
-    console.log('input looks good!');
+    alert('Invalid input! Please try again.');
+    console.log('Error: Name input');
+    //add a highlight to the box somehow? add a red asterisk?
+    return;
+  }
+  if (minHourlyCustomers === NaN) {
+    alert('Invalid input! Please try again.');
+    console.log('Error: Min Hourly input');
+    return;
+  }
+  if (maxHourlyCustomers === NaN) {
+    alert('Invalid input! Please try again.');
+    console.log('Error: Max Hourly input');
+    return;
+  }
+  if (averagePurchasedPerSale === NaN) {
+
   }
   submitClick(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
 }
