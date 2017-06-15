@@ -66,6 +66,10 @@ headerRow.appendChild(totalsBox);
 var tableBody = document.getElementById('table-body');
 
 for (var i = 0; i < stores.length; i++) {
+  addRowToTable(stores[i]);
+}
+
+function addRowToTable(store) {
   var storeRow = document.createElement('tr');
   tableBody.appendChild(storeRow);
   var storedData = document.createElement('td');
@@ -90,7 +94,6 @@ for (var i = 0; i < stores.length; i++) {
 }
 
 var submitButton = document.getElementById('submitButton');
-console.log(submitButton);
 
 submitButton.addEventListener('click', submitClick);
 //change the function to a check if fields are empty function//
@@ -108,8 +111,8 @@ function submitClick() {
   averagePurchasedPerSale = parseFloat(averagePurchasedPerSale);
 
   console.log(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
-  stores = new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
-  console.log(stores[0]);
+  stores[stores.length] = new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
+  addRowToTable(stores[stores.length]);
 }
 
 console.log(stores);
