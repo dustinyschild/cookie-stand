@@ -4,7 +4,7 @@
 AddStore.prototype.hoursOpen = 15;
 
 AddStore.prototype.getRandomCustomers = function() { //generate random customers
-  var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers)).toFixed();
+  var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers));
   return randomvalue;
 };
 //this should also be an array...add for loop
@@ -17,7 +17,7 @@ AddStore.prototype.getSimulatedCookiesPerHour = function() {
   for (var i = 0; i < this.hoursOpen; i++) {
     var customerCount = this.getRandomCustomers();
     var time = (i + 6);
-    hour[i] = customerCount * this.averagePurchasedPerSale;
+    hour[i] = (customerCount * this.averagePurchasedPerSale).toFixed(2);
     this.cookiesPerHour = hour;
   }
 };
@@ -49,8 +49,63 @@ var stores = [
 ];
 
 console.log(stores);
+
+var tableHeader = document.getElementById('table-header');
+var headerRow = document.createElement('tr');
+tableHeader.appendChild(headerRow);
+
+var storeBox = document.createElement('td');
+storeBox.textContent = 'Store';
+headerRow.appendChild(storeBox);
+
+for (var i = 0; i < stores[0].hoursOpen; i++) {
+  var timesRow = document.createElement('td');
+  var time = (i + 6);
+  if (time < 12) {
+    timesRow.textContent = time + 'am';
+  }
+  if (time === 12) {
+    timesRow.textContent = time + 'pm';
+  }
+  if (time > 12) {
+    timesRow.textContent = (time % 12) + 'pm';
+  }
+  headerRow.appendChild(timesRow);
+}
+var totalsBox = document.createElement('td');
+totalsBox.textContent = 'Totals';
+headerRow.appendChild(totalsBox);
+console.log(tableHeader);
+
+var tableBody = document.getElementById('table-body');
+
+for (var i = 0; i < stores.length; i++) {
+  var storeRow = document.createElement('tr');
+  tableBody.appendChild(storeRow);
+  var storedData = document.createElement('td');
+  storedData.textContent = stores[i].name;
+  storeRow.appendChild(storedData);
+
+  for (var j = 0; j < stores[i].hoursOpen; j++) {
+    storeData = document.createElement('td');
+    storeData.textContent = stores[i].cookiesPerHour[j];
+    storeRow.appendChild(storeData);
+  }
+
+  var totalsData = document.createElement('td');
+  var totalCookies = 0;
+  for (j = 0; j < stores[i].hoursOpen; j++) {
+    totalCookies = totalCookies + stores[i].cookiesPerHour[j];
+    console.log(stores[i].cookiesPerHour[j]);
+  }
+  console.log(totalCookies);
+  totalsData.textContent = totalCookies;
+  storeRow.appendChild(totalsData);
+}
+
+console.log(tableBody);
 //gets the element with id of 'store-locations'
-var storeLocationsContainer = document.getElementById('store-locations');
+/*var storeLocationsContainer = document.getElementById('store-locations');
 console.log(storeLocationsContainer);
 for (var i = 0; i < stores.length; i++) {
   store = stores[i];
@@ -85,3 +140,20 @@ function addCellsForHours(row) {
     row.appendChild(hourCell);
   }
 }
+
+window.addEventListener('click', submitClick());
+
+function submitClick() {
+  getNewstoreInfo();
+  new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
+  createNewRow(storeLocationsContainer, );
+}
+
+function getNewstoreInfo() {
+  var storeName = document.querySelector('input[name = "storeName"]');
+  var minHourlyCustomers = document.querySelector('input[name = "storeName"]');
+  var maxHourlyCustomers = document.querySelector('input[name = "storeName"]');
+  var averagePurchasedPerSale = document.querySelector('input[name = "storeName"]');
+
+}
+*/
