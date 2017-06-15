@@ -93,16 +93,23 @@ var submitButton = document.getElementById('submitButton');
 console.log(submitButton);
 
 submitButton.addEventListener('click', submitClick);
+//change the function to a check if fields are empty function//
 
 function submitClick() {
-  console.log('clicked');
-  var storeName = document.querySelector('input[name = "storeName"]');
-  var minHourlyCustomers = document.querySelector('input[name = "storeName"]');
-  var maxHourlyCustomers = document.querySelector('input[name = "storeName"]');
-  var averagePurchasedPerSale = document.querySelector('input[name = "storeName"]');
+  var storeName = document.querySelector('input[name = "storeName"]').value;
 
+  var minHourlyCustomers = document.querySelector('input[name= "minCustomers"]').value;
+  minHourlyCustomers = parseFloat(minHourlyCustomers);
+
+  var maxHourlyCustomers = document.querySelector('input[name = "maxCustomers"]').value;
+  maxHourlyCustomers = parseFloat(maxHourlyCustomers);
+
+  var averagePurchasedPerSale = document.querySelector('input[name = "avgPurchased"]').value;
+  averagePurchasedPerSale = parseFloat(averagePurchasedPerSale);
+
+  console.log(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
   stores = new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
-  console.log(stores);
+  console.log(stores[0]);
 }
 
 console.log(stores);
