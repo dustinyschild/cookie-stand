@@ -2,12 +2,10 @@
 
 //prototype values
 AddStore.prototype.hoursOpen = 15;
-
 AddStore.prototype.getRandomCustomers = function() { //generate random customers
   var randomvalue = (this.minHourlyCustomers + Math.random() * (this.maxHourlyCustomers - this.minHourlyCustomers));
   return randomvalue;
 };
-
 AddStore.prototype.getSimulatedCookiesPerHour = function() {
   var hour = [];
   for (var i = 0; i < this.hoursOpen; i++) {
@@ -30,41 +28,42 @@ function AddStore(name,
 }
 
 var stores = [
-  new AddStore('FirstAndPike',23,65,6.3),
-  new AddStore('SeaTacAirport',3,24,1.2),
-  new AddStore('SeattleCenter',11,38,3.7),
-  new AddStore('CapitolHill',20,38,2.3),
+  new AddStore('First And Pike',23,65,6.3),
+  new AddStore('SeaTac Airport',3,24,1.2),
+  new AddStore('Seattle Center',11,38,3.7),
+  new AddStore('Capitol Hill',20,38,2.3),
   new AddStore('Alki',2,16,4.6)
 ];
 
-var tableHeader = document.getElementById('table-header');
-var headerRow = document.createElement('tr');
-tableHeader.appendChild(headerRow);
+(function(){
+  var tableHeader = document.getElementById('table-header');
+  var headerRow = document.createElement('tr');
+  tableHeader.appendChild(headerRow);
 
-var storeBox = document.createElement('td');
-storeBox.textContent = 'Store';
-headerRow.appendChild(storeBox);
+  var storeBox = document.createElement('td');
+  storeBox.textContent = 'Store';
+  headerRow.appendChild(storeBox);
 
-for (var i = 0; i < stores[0].hoursOpen; i++) {
-  var timesRow = document.createElement('td');
-  var time = (i + 6);
-  if (time < 12) {
-    timesRow.textContent = time + 'am';
+//header row
+  for (var i = 0; i < stores[0].hoursOpen; i++) {
+    var timesRow = document.createElement('td');
+    var time = (i + 6);
+    if (time < 12) {
+      timesRow.textContent = time + 'am';
+    }
+    if (time === 12) {
+      timesRow.textContent = time + 'pm';
+    }
+    if (time > 12) {
+      timesRow.textContent = (time % 12) + 'pm';
+    }
+    headerRow.appendChild(timesRow);
   }
-  if (time === 12) {
-    timesRow.textContent = time + 'pm';
-  }
-  if (time > 12) {
-    timesRow.textContent = (time % 12) + 'pm';
-  }
-  headerRow.appendChild(timesRow);
-}
-var totalsBox = document.createElement('td');
-totalsBox.textContent = 'Totals';
-headerRow.appendChild(totalsBox);
-
+  var totalsBox = document.createElement('td');
+  totalsBox.textContent = 'Totals';
+  headerRow.appendChild(totalsBox);
+})();
 var tableBody = document.getElementById('table-body');
-
 for (var i = 0; i < stores.length; i++) {
   addRowToTable(stores[i]);
 }
@@ -95,10 +94,9 @@ function addRowToTable(store) {
 
 var submitButton = document.getElementById('submitButton');
 
-submitButton.addEventListener('click', submitClick);
+submitButton.addEventListener('click', checkFieldValues);
 //change the function to a check if fields are empty function//
-
-function submitClick() {
+function checkFieldValues(){
   var storeName = document.querySelector('input[name = "storeName"]').value;
 
   var minHourlyCustomers = document.querySelector('input[name= "minCustomers"]').value;
@@ -110,9 +108,21 @@ function submitClick() {
   var averagePurchasedPerSale = document.querySelector('input[name = "avgPurchased"]').value;
   averagePurchasedPerSale = parseFloat(averagePurchasedPerSale);
 
-  console.log(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
+  if (typeof storeName !== 'string' || storeName === '') {
+    //display error message
+    console.log(typeof storeName);
+    console.log('invalid input');
+  } else {
+    console.log('input looks good!');
+  }
+  submitClick(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
+}
+
+function submitClick(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale) {
+
   stores[stores.length] = new AddStore(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
   addRowToTable(stores[stores.length]);
+  console.log(stores);
 }
 
 console.log(stores);
