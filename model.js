@@ -126,7 +126,7 @@ function checkFieldValues(){
     return;
   }
   if (averagePurchasedPerSale === NaN) {
-
+    return;
   }
   submitClick(storeName, minHourlyCustomers, maxHourlyCustomers, averagePurchasedPerSale);
 }
