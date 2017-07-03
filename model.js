@@ -60,10 +60,10 @@ for (var i = 0; i < stores.length; i++){
       newHourlyInfo.innerText = ((j + 6) % 12) + 'PM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
     }
     hourlyInfoContainer.appendChild(newHourlyInfo);
-    totalCookies = totalCookies + stores[i].cookiesPerHour[j].toFixed(2);
+    totalCookies = totalCookies + stores[i].cookiesPerHour[j];
   }
   var totalHourlyInfo = document.createElement('li');
-  totalHourlyInfo.innerText = 'Total cookies: ' + totalCookies;
+  totalHourlyInfo.innerText = 'Total cookies: ' + totalCookies.toFixed(2);
   hourlyInfoContainer.appendChild(totalHourlyInfo);
 }
 console.log(totalCookies);
