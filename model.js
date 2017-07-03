@@ -1,3 +1,4 @@
+'use strict';
 //stores all information
 
 //prototype values
@@ -34,6 +35,38 @@ var stores = [
   new AddStore('Capitol Hill',20,38,2.3),
   new AddStore('Alki',2,16,4.6)
 ];
+
+var listContainer = document.getElementById('storelist');
+
+var newStoreLabel = document.createElement('div');
+listContainer.appendChild(newStoreLabel);
+for (var i = 0; i < stores.length; i++){
+  var storeName = document.createElement('h3');
+  storeName.innerText = stores[i].name;
+  newStoreLabel.appendChild(storeName);
+
+  var hourlyInfoContainer = document.createElement('ul');
+  newStoreLabel.appendChild(hourlyInfoContainer);
+  var totalCookies = 0;
+  for (var j = 0; j < stores[i].hoursOpen; j++){
+    var newHourlyInfo = document.createElement('li');
+    if ((j + 6) < 12){
+      newHourlyInfo.innerText = (j + 6) + 'AM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
+    }
+    if ((j + 6) === 12){
+      newHourlyInfo.innerText = (j + 6) + 'PM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
+    }
+    if ((j + 6) > 12){
+      newHourlyInfo.innerText = ((j + 6) % 12) + 'PM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
+    }
+    hourlyInfoContainer.appendChild(newHourlyInfo);
+    totalCookies = totalCookies + stores[i].cookiesPerHour[j].toFixed(2);
+  }
+  var totalHourlyInfo = document.createElement('li');
+  totalHourlyInfo.innerText = 'Total cookies: ' + totalCookies;
+  hourlyInfoContainer.appendChild(totalHourlyInfo);
+}
+console.log(totalCookies);
 
 (function(){
   var tableHeader = document.getElementById('table-header');
@@ -76,10 +109,10 @@ function addRowToTable(store) {
   storeRow.appendChild(storedData);
 
   for (var j = 0; j < stores[i].hoursOpen; j++) {
-    storeData = document.createElement('td');
+    storedData = document.createElement('td');
     var storeDataPoint = (stores[i].cookiesPerHour[j]).toFixed(2);
-    storeData.textContent = storeDataPoint;
-    storeRow.appendChild(storeData);
+    storedData.textContent = storeDataPoint;
+    storeRow.appendChild(storedData);
   }
 
   var totalsData = document.createElement('td');

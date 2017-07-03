@@ -2,49 +2,50 @@
 <html>
 <head>
   <title>Store Data</title>
+  <link href="styles.css" rel="stylesheet"/>
 </head>
-  <body>
-    <header>
-      <img src= "https://github.com/DeltaVCode/cr-201-2017/blob/master/class-06-dom-objects-domain_modeling/lab/assets/salmon.png?raw=true"/>
-      <h1>Pat's Stores' Data</h1>
-  </header>
-  <form>
-    <fieldset>
-      <legend>Add a store:</legend>
-      <ul>
-        <li>
-          <label class= "new-store-label">Store Name:</label>
-          <input type= "text" name= "storeName" id= "storeName"/>
-        </li>
-        <li>
-          <label class= "new-store-label">Min. Customers/Hour:</label>
-          <input type="text" name="minCustomers"/>
-        </li>
-        <li>
-          <label class= "new-store-label">Max. Customers/Hour:</label>
-          <input type="text" name="maxCustomers"/>
-        </li>
-        <li>
-          <label class= "new-store-label">Avg. Cookies Purchased/Hour:</label>
-          <input type="text" name="avgPurchased"/>
-        </li>
-        <li>
-          <label>Submit Button</label>
-          <input id= "submitButton" type= "button" value= "Submit"/>
-        </li>
-      </ul>
-    </fieldset>
-  </form>
-  <div class= "table-div">
-  <table>
-    <thead id= "table-header">
-    </thead>
-    <tbody id= "table-body">
-    </tbody>
-  </table>
-    </div>
-  <script src= "model.js"></script>
-  <script src= "stores.js"></script>
+<body>
+  <header>
+    <img src= "https://github.com/DeltaVCode/cr-201-2017/blob/master/class-06-dom-objects-domain_modeling/lab/assets/salmon.png?raw=true"/>
+    <h1>Pat's Stores' Data</h1>
+</header>
+<form>
+  <fieldset>
+    <legend>Add a store:</legend>
+    <ul>
+      <li>
+        <label class= "new-store-label">Store Name:</label>
+        <input type= "text" name= "storeName" id= "storeName"/>
+      </li>
+      <li>
+        <label class= "new-store-label">Min. Customers/Hour:</label>
+        <input type="text" name="minCustomers"/>
+      </li>
+      <li>
+        <label class= "new-store-label">Max. Customers/Hour:</label>
+        <input type="text" name="maxCustomers"/>
+      </li>
+      <li>
+        <label class= "new-store-label">Avg. Cookies Purchased/Hour:</label>
+        <input type="text" name="avgPurchased"/>
+      </li>
+      <li>
+        <label>Submit Button</label>
+        <input id= "submitButton" type= "button" value= "Submit"/>
+      </li>
+    </ul>
+  </fieldset>
+</form>
+<div id="storelist"></div>
+<div class= "table-div">
+<table>
+  <thead id= "table-header">
+  </thead>
+  <tbody id= "table-body">
+  </tbody>
+</table>
+  </div>
+<script src= "model.js"></script>
 </body>
 
 </html>
