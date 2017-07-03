@@ -40,17 +40,33 @@ var listContainer = document.getElementById('storelist');
 
 var newStoreLabel = document.createElement('div');
 listContainer.appendChild(newStoreLabel);
+for (var i = 0; i < stores.length; i++){
+  var storeName = document.createElement('h3');
+  storeName.innerText = stores[i].name;
+  newStoreLabel.appendChild(storeName);
 
-var storeName = document.createElement('h3');
-storeName.innerText = stores[0].name;
-newStoreLabel.appendChild(storeName);
-
-var hourlyInfoContainer = document.createElement('ul');
-newStoreLabel.appendChild(hourlyInfoContainer);
-
-var newHourlyInfo = document.createElement('li');
-newHourlyInfo.innerText = '6AM: ' + stores[0].cookiesPerHour[0].toFixed(2) + ' cookies';
-hourlyInfoContainer.appendChild(newHourlyInfo);
+  var hourlyInfoContainer = document.createElement('ul');
+  newStoreLabel.appendChild(hourlyInfoContainer);
+  var totalCookies = 0;
+  for (var j = 0; j < stores[i].hoursOpen; j++){
+    var newHourlyInfo = document.createElement('li');
+    if ((j + 6) < 12){
+      newHourlyInfo.innerText = (j + 6) + 'AM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
+    }
+    if ((j + 6) === 12){
+      newHourlyInfo.innerText = (j + 6) + 'PM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
+    }
+    if ((j + 6) > 12){
+      newHourlyInfo.innerText = ((j + 6) % 12) + 'PM: ' + stores[i].cookiesPerHour[j].toFixed(2) + ' cookies';
+    }
+    hourlyInfoContainer.appendChild(newHourlyInfo);
+    totalCookies = totalCookies + stores[i].cookiesPerHour[j].toFixed(2);
+  }
+  var totalHourlyInfo = document.createElement('li');
+  totalHourlyInfo.innerText = 'Total cookies: ' + totalCookies;
+  hourlyInfoContainer.appendChild(totalHourlyInfo);
+}
+console.log(totalCookies);
 
 (function(){
   var tableHeader = document.getElementById('table-header');
