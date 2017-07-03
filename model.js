@@ -41,13 +41,15 @@ var listContainer = document.getElementById('storelist');
 var newStoreLabel = document.createElement('div');
 listContainer.appendChild(newStoreLabel);
 
-var store = document.createElement('h3');
-newStoreLabel.appendChild(store);
+var storeName = document.createElement('h3');
+storeName.innerText = stores[0].name;
+newStoreLabel.appendChild(storeName);
 
 var hourlyInfoContainer = document.createElement('ul');
 newStoreLabel.appendChild(hourlyInfoContainer);
 
 var newHourlyInfo = document.createElement('li');
+newHourlyInfo.innerText = '6AM: ' + stores[0].cookiesPerHour[0].toFixed(2) + ' cookies';
 hourlyInfoContainer.appendChild(newHourlyInfo);
 
 (function(){
