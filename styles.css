@@ -9,8 +9,9 @@ color:
 
 body {
   background: #D6B173;
-  border: #242321 solid 8px;
+  border: #242321 solid 20px;
   margin: 0px;
+  height: inherit;
 }
 
 header h1 {
@@ -51,6 +52,12 @@ nav li:hover {
 nav li a {
   text-decoration: none;
   color: black;
+}
+
+aside {
+  position: relative;
+  float: left;
+  width: 30%;
 }
 
 .newStoreDiv {
