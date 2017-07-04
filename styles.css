@@ -1,20 +1,21 @@
 /*
 put all colors used here
-body: #asdf
-color:
-color:
+body: #242321
+color: #A7502C
+color: #D6B173
 color:
 color:
 */
 
 body {
-  background: #242321;
+  background: #D6B173;
   border: #242321 solid 8px;
+  margin: 0px;
 }
 
 header h1 {
   display: inline;
-  font-size: ;
+  font-size: 3em;
 }
 
 img {
@@ -28,14 +29,46 @@ header {
   display: block;
 }
 
-.table-div, form {
+nav {
+  width: 30%;
+  display: inline;
+  float: right;
+  margin-top: 30px;
+}
+
+nav li {
+  list-style: none;
+  font-size: 1.5em;
+  display: inline;
+  padding: 10px
+}
+
+nav li:hover {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+nav li a {
+  text-decoration: none;
+  color: black;
+}
+
+.newStoreDiv {
+  display: inline;
+}
+
+#storelist {
+  position: relative;
+}
+
+.table-div, form, #storelist {
   background: #D6B173;
   width: 100%;
 }
 
 table {
   padding: 10px;
-  max-width: 800px;
+  width: 100%;
 }
 
 fieldset {
@@ -52,14 +85,16 @@ form {
 
 form li {
   list-style-type: none;
-
 }
+
 td {
   border: black solid 2px;
 }
+
 input {
   margin: 5px;
 }
+
 .new-store-label {
   margin-right: 20px;
   width: 200px;

@@ -37,10 +37,10 @@ var stores = [
 ];
 
 var listContainer = document.getElementById('storelist');
-
-var newStoreLabel = document.createElement('div');
-listContainer.appendChild(newStoreLabel);
 for (var i = 0; i < stores.length; i++){
+  var newStoreLabel = document.createElement('div');
+  newStoreLabel.setAttribute('class','newStoreDiv');
+  listContainer.appendChild(newStoreLabel);
   var storeName = document.createElement('h3');
   storeName.innerText = stores[i].name;
   newStoreLabel.appendChild(storeName);
