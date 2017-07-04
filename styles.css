@@ -9,10 +9,9 @@ color:
 
 body {
   background: #D6B173;
-  border: #242321 solid 20px;
   margin: 0px;
   position: relative;
-  height: 900px;
+  height: 950px;
 }
 
 header h1 {
@@ -115,6 +114,7 @@ legend {
 
 form {
   border-bottom: #242321 dotted 3px;
+  display: inline;
 }
 
 form li {
@@ -140,7 +140,7 @@ input {
 footer {
   position: absolute;
   bottom: 0;
-  background-color: #A7502C;
+  background-color: white;
   height: 20%;
   width: 100%;
   border-top: #242321 solid 5px;
@@ -149,4 +149,15 @@ footer {
 #footerimage {
   height: 100%;
   width: auto;
+  display: inline;
+}
+
+#footerimage2 {
+  height: 100%;
+  width: auto;
+}
+
+footer div {
+  display: inline;
+  width: 20%;
 }
